@@ -1,5 +1,4 @@
 via shell
-https://docs.atlas.mongodb.com/mongo-shell-connection/
 
 mongo "mongodb+srv://cluster0prova-lqyof.mongodb.net/test" --username telecomUser
 mongo "mongodb+srv://cluster0prova-lqyof.mongodb.net/<DATABASE>" --username <USERNAME>
