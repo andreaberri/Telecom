@@ -1,0 +1,12 @@
+via shell
+https://docs.atlas.mongodb.com/mongo-shell-connection/
+
+mongo "mongodb+srv://cluster0prova-lqyof.mongodb.net/test" --username telecomUser
+mongo "mongodb+srv://cluster0prova-lqyof.mongodb.net/<DATABASE>" --username <USERNAME>
+
+
+
+ROBO3T
+nella tab Connection impostare Replica Set; dare un nome; come members mettere host e porte dei nodi del replica set di mongo Atlas visualizzabili cliccando la voce cluster del menu di navigazione a sinistra di mongo Atlas e cliccando sul cluster
+impostare utente e credenziali di autenticazione nella tab Authentication
+spuntare "Use SSL protocol" nella scheda SSL
