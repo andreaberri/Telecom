@@ -26,6 +26,10 @@ sort= {
 	$sort: { "cdrList.dataChiamata": 1 } 
 	}
 
+unwind= {
+	$unwind: "$cdrList"
+	}
+
 count=  {
 	$count: "progIdTypeInCdrs"
 	}
