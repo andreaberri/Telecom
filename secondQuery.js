@@ -15,19 +15,34 @@ match0= {
 		}
 	}
 	
-match1= {
+match1Dati= {
 	$match: {
-		"cdrList.macroFamiglia" : cdrsType, 
+		"cdrList.macroFamiglia" : "DATI", 
 		"cdrList.dataChiamata": { $gte: tsStart, $lt: tsStop}
 		}
+	}
+
+match1Voce= {
+	$match: {
+		"cdrList.macroFamiglia" : "VOCE", 
+		"cdrList.dataChiamata": { $gte: tsStart, $lt: tsStop}
+		}
+	}
+
+match1Sms= {
+	$match: {
+		"cdrList.macroFamiglia" : "SMS/MMS", 
+		"cdrList.dataChiamata": { $gte: tsStart, $lt: tsStop}
+		}
+	}	
+	
+	
+unwind= {
+	$unwind: "$cdrList"
 	}
 	
 sort= { 
 	$sort: { "cdrList.dataChiamata": 1 } 
-	}
-
-unwind= {
-	$unwind: "$cdrList"
 	}
 
 count=  {
@@ -37,11 +52,11 @@ count=  {
 group= {
 	$group : {                                       
      _id : { numLinea: "$numLinea", data : "$data"},     
-     totalField1: { $sum: "$cdrList.f1" },
-     totalField3: { $sum: "$cdrList.f3" }
+     totaleConOfferta: { $sum: "$cdrList.costo" },
+     //totaleFatturati: { $sum: "$cdrList.dataFatturazione" }
          }
 	}
 
 	
 
-//db.bucketProva.aggregate([match0, match1, sort]).pretty() esempio di uso
+//db.bucketProva.aggregate([match0, match1Dati, sort]).pretty()
