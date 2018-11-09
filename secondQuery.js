@@ -45,8 +45,13 @@ sort= {
 	$sort: { "cdrList.dataChiamata": 1 } 
 	}
 
+sortDisc= { 
+	$sort: { "cdrList.dataChiamata": -1 } 
+	}	
+
+
 count=  {
-	$count: "progIdTypeInCdrs"
+	$count: "risultatiTrovati"
 	}
 	
 group= {
