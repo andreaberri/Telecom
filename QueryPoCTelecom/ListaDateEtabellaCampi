@@ -1,0 +1,89 @@
+####################################################################################
+DATE
+	20181001 dal primo ottobre
+	20181112 all'11 novembre
+	
+//tipo di cdrs da cercare es. "VOCE", SMS/MMS, SMS-MMS, DATI
+##########################ultimi 7 gg, ultimi 30 gg e mese solare precedente
+
+7gg
+
+	20181105     
+	20181112
+	
+{$match :{"numLinea":"3354323423", "data":{$gte: "20181105", $lte: "20181112"}}},
+	
+	20181105000000   
+	20181112999999
+
+{$match: {"cdrList.macroFamiglia" : "DATI", "cdrList.dataChiamata": { $gte: "20181105000000", $lt: "20181112999999"}}},   
+	
+########################################ultimi 30 giorni
+
+    20181012
+	20181112
+	
+{$match :{"numLinea":"3354323423", "data":{$gte: "20181012", $lte: "20181112"}}},
+
+	20181012000000   
+	20181112999999
+
+{$match: {"cdrList.macroFamiglia" : "DATI", "cdrList.dataChiamata": { $gte: "20181012000000", $lt: "20181112999999"}}},   
+
+	
+#################################mese solare precedente
+
+	20181001
+	20181031
+	
+{$match :{"numLinea":"3354323423", "data":{$gte: "20181001", $lte: "20181031"}}},
+
+	20181001000000   
+	20181031999999
+
+{$match: {"cdrList.macroFamiglia" : "DATI", "cdrList.dataChiamata": { $gte: "20181001000000", $lt: "20181031999999"}}},   
+______________________________________________________________________________________________________	
+	
+
+Progressivi per numero linea
+
+    T30: 3301000000 (linee con 30 cdr/gg)->3308000000
+    T55: 3551000000 (linee con 55 cdr/gg)->3552000000
+	
+______________________________________________________________________________________________________
+
+Per il traffico DATI sarebbe utile anche implementare un’aggregazione su base 
+‘data’, ‘apn’ e ‘codiceOfferta’ con SUM sul campo ‘volumeDati’.
+
+
++--------------------------------------------------------------------------------+
+| key                           | types                 | occurrences | percents |
+| ----------------------------- | --------------------- | ----------- | -------- |
+| _id                           | ObjectId              |          30 |    100.0 |
+| cdrList                       | Array                 |          30 |    100.0 |
+| cdrList.XX.apn                | null (18),String (12) |          30 |    100.0 |
+| cdrList.XX.centrale           | null (14),String (16) |          30 |    100.0 |
+| cdrList.XX.cin                | String (24),null (6)  |          30 |    100.0 |
+| cdrList.XX.classeServizio     | null                  |          30 |    100.0 |
+| cdrList.XX.codiceOfferta      | String                |          30 |    100.0 |
+| cdrList.XX.costo              | Number                |          30 |    100.0 |
+| cdrList.XX.dataChiamata       | String                |          30 |    100.0 |
+| cdrList.XX.dataFatturazione   | null (14),String (16) |          30 |    100.0 |
+| cdrList.XX.durataChiamata     | Number                |          30 |    100.0 |
+| cdrList.XX.identificativoSIM  | null                  |          30 |    100.0 |
+| cdrList.XX.macroFamiglia      | String                |          30 |    100.0 |
+| cdrList.XX.numChiamato        | null (14),String (16) |          30 |    100.0 |
+| cdrList.XX.numChiamatoCifrato | null (14),String (16) |          30 |    100.0 |
+| cdrList.XX.profiloTariffario  | null (14),String (16) |          30 |    100.0 |
+| cdrList.XX.tipoCartaServizi2  | null (14),String (16) |          30 |    100.0 |
+| cdrList.XX.tipoChiamata       | String                |          30 |    100.0 |
+| cdrList.XX.tipoComunicazione  | null (20),String (10) |          30 |    100.0 |
+| cdrList.XX.tipoTicket         | null (20),String (10) |          30 |    100.0 |
+| cdrList.XX.volumeDati         | Number                |          30 |    100.0 |
+| count                         | Number                |          30 |    100.0 |
+| data                          | String                |          30 |    100.0 |
+| numLinea                      | String                |          30 |    100.0 |
++--------------------------------------------------------------------------------+
+	
+	
+	
